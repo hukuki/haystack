@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-farm-haystack = {extras = ["all-gpu"], version = "*"}
 jupyter = "*"
 
 [dev-packages]
