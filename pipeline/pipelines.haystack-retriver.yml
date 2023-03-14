@@ -20,7 +20,7 @@ components:    # define all the building-blocks for Pipeline
     type: PreProcessor
     params:
       split_by: word
-      split_length: 1000
+      split_length: 200
   - name: FileTypeClassifier
     type: FileTypeClassifier
 
