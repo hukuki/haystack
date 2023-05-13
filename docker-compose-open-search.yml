@@ -1,0 +1,35 @@
+services:
+
+  haystack-api-2:
+    image: "deepset/haystack:cpu"
+    volumes:
+      - ./pipeline:/opt/pipelines
+    ports:
+      - 8000:8000
+    restart: on-failure
+    environment:
+      - DOCUMENTSTORE_PARAMS_HOST=opensearch
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-opensearch.yml
+      - TOKENIZERS_PARALLELISM=false
+      # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
+      # before it times out. This should include the time required to cache the models and setup the pipelines.
+
+      # - GUNICORN_CMD_ARGS="--timeout=3000"
+    depends_on:
+      opensearch:
+        condition: service_healthy
+
+  opensearch:
+    image: "opensearchproject/opensearch:latest"
+    ports:
+      - 9200:9200
+      - 9600:9600
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    healthcheck:
+        test: curl --fail https://localhost:9200/_cat/health -ku 'admin:admin' || exit 1
+        interval: 10s
+        timeout: 1s
+        retries: 10
