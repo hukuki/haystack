@@ -33,3 +33,5 @@ services:
         interval: 10s
         timeout: 1s
         retries: 10
+    volumes:
+      - ./opensearch-data:/usr/share/opensearch/data
