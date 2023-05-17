@@ -29,7 +29,5 @@ pipelines:
     nodes:
       - name: JsonFileConverter
         inputs: [File]
-      - name: Retriever
-        inputs: [JsonFileConverter]
       - name: DocumentStore
         inputs: [Retriever]
