@@ -30,4 +30,4 @@ pipelines:
       - name: JsonFileConverter
         inputs: [File]
       - name: DocumentStore
-        inputs: [Retriever]
+        inputs: [JsonFileConverter]
