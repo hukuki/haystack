@@ -9,6 +9,7 @@ components:    # define all the building-blocks for Pipeline
       host: localhost
       similarity: cosine
       embedding_dim: 768
+      refresh_type: 'false'
   - name: Retriever
     type: EmbeddingRetriever
     params:
