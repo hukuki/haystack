@@ -18,6 +18,12 @@ components:    # define all the building-blocks for Pipeline
       use_auth_token: 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
       embedding_model: atakankara/distilbert-biencoder-msmarco-tr
       max_seq_len: 300
+  - name: Ranker
+    type: SentenceTransformersRanker
+    params:
+      model_name_or_path: atakankara/bert-cross-encoder-msmarco-tr
+      use_auth_token: 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
+      top_k: 20
   - name: JsonFileConverter
     type: JsonConverter
 
@@ -26,6 +32,8 @@ pipelines:
     nodes:
       - name: Retriever
         inputs: [Query]
+      - name: Ranker
+        inputs: [Retriever]
   - name: indexing
     nodes:
       - name: JsonFileConverter
