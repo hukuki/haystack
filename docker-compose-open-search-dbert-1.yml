@@ -18,6 +18,13 @@ services:
     depends_on:
       opensearch:
         condition: service_healthy
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   opensearch:
     image: "opensearchproject/opensearch:latest"
