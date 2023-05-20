@@ -6,7 +6,7 @@ services:
       - ./pipeline:/opt/pipelines
     ports:
       - 8000:8000
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - DOCUMENTSTORE_PARAMS_HOST=opensearch
       - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-opensearch-dbert-1.yml
@@ -31,7 +31,7 @@ services:
     ports:
       - 9200:9200
       - 9600:9600
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
