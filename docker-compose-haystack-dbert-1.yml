@@ -1,0 +1,24 @@
+services:
+
+  haystack-api-2:
+    image: "deepset/haystack:gpu"
+    volumes:
+      - ./pipeline:/opt/pipelines
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    environment:
+      - DOCUMENTSTORE_PARAMS_HOST=opensearch
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-haystack-dbert-1 copy
+      - TOKENIZERS_PARALLELISM=false
+      # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
+      # before it times out. This should include the time required to cache the models and setup the pipelines.
+
+      # - GUNICORN_CMD_ARGS="--timeout=3000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
