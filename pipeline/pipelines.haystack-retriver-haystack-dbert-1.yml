@@ -7,6 +7,7 @@ components:    # define all the building-blocks for Pipeline
     type: OpenSearchDocumentStore
     params:
       host: '35.207.144.184'
+      scheme: http
       similarity: cosine
       embedding_dim: 768
       refresh_type: 'false'
