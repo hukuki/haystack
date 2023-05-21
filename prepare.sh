@@ -22,6 +22,7 @@ sudo apt-get update \
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 
+## project
 git clone https://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@github.com/hukuki/haystack.git
 aws configure
 cd haystack

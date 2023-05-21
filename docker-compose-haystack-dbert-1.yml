@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     environment:
       - DOCUMENTSTORE_PARAMS_HOST=opensearch
-      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-haystack-dbert-1 copy
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-haystack-dbert-1.yml
       - TOKENIZERS_PARALLELISM=false
       # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
       # before it times out. This should include the time required to cache the models and setup the pipelines.
