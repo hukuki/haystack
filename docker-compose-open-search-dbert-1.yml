@@ -38,7 +38,7 @@ services:
       - OPENSEARCH_VOLUME_PATH
       - DISABLE_SECURITY_PLUGIN=true
     healthcheck:
-        test: curl --fail https://localhost:9200/_cat/health -ku 'admin:admin' || exit 1
+        test: curl --fail http://localhost:9200/_cat/health -ku 'admin:admin' || exit 1
         interval: 10s
         timeout: 1s
         retries: 10
