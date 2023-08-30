@@ -4,13 +4,13 @@ version: ignore
 
 components:    # define all the building-blocks for Pipeline
   - name: DocumentStore
+    type: OpenSearchDocumentStore
     params:
-      host: http://34.125.204.21
-      index: Legislation
-      port: 8080
+      host: '34.125.115.111'
+      scheme: http
       similarity: cosine
       embedding_dim: 768
-    type: WeaviateDocumentStore
+      refresh_type: 'false'
   - name: Retriever
     type: EmbeddingRetriever
     params:
