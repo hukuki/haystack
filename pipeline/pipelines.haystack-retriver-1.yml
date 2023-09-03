@@ -27,15 +27,15 @@ components:    # define all the building-blocks for Pipeline
       top_k: 20
   - name: JsonFileConverter
     type: JsonConverter
-  - name: Preprocessor
-    type: QueryPreprocessor
+  # - name: Preprocessor
+  #   type: QueryPreprocessor
 
 
 pipelines:
   - name: query    # a sample extractive-qa Pipeline
     nodes:
-      - name: Preprocessor
-        inputs: [Query]
+      # - name: Preprocessor
+      #   inputs: [Query]
       - name: Retriever
         inputs: [Preprocessor]
       - name: Ranker
