@@ -3,12 +3,12 @@ services:
   haystack-api-2:
     image: "deepset/haystack:gpu"
     volumes:
-      - ./pipeline:/opt/venv/lib/python3.10/site-packages/rest_api/pipeline
+      - ./pipeline:/opt/pipelines
     ports:
       - 8000:8000
     restart: unless-stopped
     environment:
-      - PIPELINE_YAML_PATH=/opt/venv/lib/python3.10/site-packages/rest_api/pipeline/pipelines.haystack-retriver-1.yml
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-retriver-1.yml
       - TOKENIZERS_PARALLELISM=false
       # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
       # before it times out. This should include the time required to cache the models and setup the pipelines.
