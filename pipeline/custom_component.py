@@ -41,6 +41,6 @@ class QueryPreprocessor(BaseComponent):
 
         for query in queries:
             text = self.run(query)
-            texts.append(text[0])
+            texts.append(text)
 
         return texts, "output_1"
