@@ -34,7 +34,7 @@ class QueryPreprocessor(BaseComponent):
         # query = query.translate(str.maketrans('âîûÂÎÛ', 'aiuAİU')) # Normalize Turkish characters by removing circumflex
         # query = query.translate(str.maketrans(weird_chars_keys, weird_chars_values)) # Fix weird characters
         # query = query.strip() # Remove leading and trailing spaces
-        return query, "output_1"
+        return query
     
     def run_batch(self, queries: Optional[List[str]]):
         texts = []
@@ -43,4 +43,4 @@ class QueryPreprocessor(BaseComponent):
             text = self.run(query)
             texts.append(text)
 
-        return texts, "output_1"
+        return texts
