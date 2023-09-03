@@ -26,14 +26,14 @@ class QueryPreprocessor(BaseComponent):
         import re
         import unicodedata
         
-        weird_chars_keys = "á×‘ãòŷІ≤ý˂ ≈οà′éȗȋ–—‐а’“š≥É‚êïìŜóú⁄å‒”ô℮è―˃ʺÌ¡„−íäķậēÏ"
-        weird_chars_values = 'ax\'aoyI<y< =oa\'eui---a\'"ş>E,eiiSou/a-"oee->"İi,-iakaeİ'
+        # weird_chars_keys = "á×‘ãòŷІ≤ý˂ ≈οà′éȗȋ–—‐а’“š≥É‚êïìŜóú⁄å‒”ô℮è―˃ʺÌ¡„−íäķậēÏ"
+        # weird_chars_values = 'ax\'aoyI<y< =oa\'eui---a\'"ş>E,eiiSou/a-"oee->"İi,-iakaeİ'
         
-        query = unicodedata.normalize('NFKC', query) # Normalize unicode 
-        query = re.sub(r'\s+', ' ', query) # Remove extra spaces
-        query = query.translate(str.maketrans('âîûÂÎÛ', 'aiuAİU')) # Normalize Turkish characters by removing circumflex
-        query = query.translate(str.maketrans(weird_chars_keys, weird_chars_values)) # Fix weird characters
-        query = query.strip() # Remove leading and trailing spaces
+        # query = unicodedata.normalize('NFKC', query) # Normalize unicode 
+        # query = re.sub(r'\s+', ' ', query) # Remove extra spaces
+        # query = query.translate(str.maketrans('âîûÂÎÛ', 'aiuAİU')) # Normalize Turkish characters by removing circumflex
+        # query = query.translate(str.maketrans(weird_chars_keys, weird_chars_values)) # Fix weird characters
+        # query = query.strip() # Remove leading and trailing spaces
         return query, "output_1"
     
     def run_batch(self, queries: Optional[List[str]]):
