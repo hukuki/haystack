@@ -35,9 +35,9 @@ pipelines:
   - name: query    # a sample extractive-qa Pipeline
     nodes:
       - name: Preprocessor
-        inputs: [Preprocessor]
-      - name: Retriever
         inputs: [Query]
+      - name: Retriever
+        inputs: [Preprocessor]
       - name: Ranker
         inputs: [Retriever]
   - name: indexing
