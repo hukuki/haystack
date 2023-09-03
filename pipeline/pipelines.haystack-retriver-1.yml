@@ -37,7 +37,7 @@ pipelines:
       # - name: Preprocessor
       #   inputs: [Query]
       - name: Retriever
-        inputs: [Preprocessor]
+        inputs: [Query]
       - name: Ranker
         inputs: [Retriever]
   - name: indexing
