@@ -1,0 +1,48 @@
+# To allow your IDE to autocomplete and validate your YAML pipelines, name them as <name of your choice>.haystack-pipeline.yml
+
+version: ignore
+
+components:    # define all the building-blocks for Pipeline
+  - name: DocumentStore
+    params:
+      host: http://34.125.204.21
+      index: Legislation
+      port: 8080
+      similarity: dot_product
+      embedding_dim: 768
+    type: WeaviateDocumentStore
+  - name: Retriever
+    type: EmbeddingRetriever
+    params:
+      document_store: DocumentStore    # params can reference other components defined in the YAML
+      top_k: 100
+      use_auth_token: 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
+      embedding_model: atakankara/biencoder-tsdae-marginmse-msmarco-v2
+      max_seq_len: 300
+  - name: Ranker
+    type: SentenceTransformersRanker
+    params:
+      model_name_or_path: atakankara/cross-encoder-tr-v2
+      use_auth_token: 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
+      top_k: 20
+  - name: JsonFileConverter
+    type: JsonConverter
+  - name: Preprocessor
+    type: QueryPreprocessor
+
+
+pipelines:
+  - name: query    # a sample extractive-qa Pipeline
+    nodes:
+      - name: Preprocessor
+        inputs: [Query]
+      - name: Retriever
+        inputs: [Preprocessor]
+      - name: Ranker
+        inputs: [Retriever]
+  - name: indexing
+    nodes:
+      - name: JsonFileConverter
+        inputs: [File]
+      - name: DocumentStore
+        inputs: [JsonFileConverter]
